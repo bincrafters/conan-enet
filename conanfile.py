@@ -20,12 +20,15 @@ class EnetConan(ConanFile):
     default_options = "shared=False"
     source_subfolder = "source_subfolder"
     
+    def config(self):
+        del self.settings.compiler.libcxx  # We are a pure C lib.
+
     def source(self):
         source_url = "http://enet.bespin.org/download"
         tools.get("{0}/{1}-{2}.tar.gz".format(source_url, self.name, self.version))
         extracted_dir = self.name + "-" + self.version
         os.rename(extracted_dir, self.source_subfolder)
-
+        
     def build(self):
         cmake = CMake(self)
         cmake.configure()
