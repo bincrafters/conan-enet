@@ -17,8 +17,8 @@ class EnetConan(ConanFile):
     generators = "cmake"
     settings = "os", "arch", "compiler", "build_type"
     options = {"shared": [True, False]}
-    default_options = "shared=False"
-    source_subfolder = "source_subfolder"
+    default_options = {'shared': 'False'}
+    _source_subfolder = "source_subfolder"
     
     def config(self):
         del self.settings.compiler.libcxx  # We are a pure C lib.
@@ -27,7 +27,7 @@ class EnetConan(ConanFile):
         source_url = "http://enet.bespin.org/download"
         tools.get("{0}/{1}-{2}.tar.gz".format(source_url, self.name, self.version))
         extracted_dir = self.name + "-" + self.version
-        os.rename(extracted_dir, self.source_subfolder)
+        os.rename(extracted_dir, self._source_subfolder)
         
     def build(self):
         cmake = CMake(self)
@@ -35,8 +35,8 @@ class EnetConan(ConanFile):
         cmake.build()
 
     def package(self):
-        self.copy(pattern="LICENSE", dst="licenses", src=self.source_subfolder)
-        include_folder = os.path.join(self.source_subfolder, "include")
+        self.copy(pattern="LICENSE", dst="licenses", src=self._source_subfolder)
+        include_folder = os.path.join(self._source_subfolder, "include")
         self.copy(pattern="*", dst="include", src=include_folder)
         self.copy(pattern="*.lib", dst="lib", src="lib", keep_path=False)
         self.copy(pattern="*.a", dst="lib", src="lib", keep_path=False)
