@@ -7,7 +7,7 @@ import os
 
 class EnetConan(ConanFile):
     name = "enet"
-    version = "1.3.13"
+    version = "1.3.14"
     description = "ENet reliable UDP networking library"
     url = "https://github.com/bincrafters/conan-enet"
     homepage = "https://github.com/lsalzman/enet"
@@ -19,7 +19,7 @@ class EnetConan(ConanFile):
     options = {"shared": [True, False]}
     default_options = {'shared': 'False'}
     _source_subfolder = "source_subfolder"
-    
+
     def config(self):
         del self.settings.compiler.libcxx  # We are a pure C lib.
 
@@ -28,7 +28,7 @@ class EnetConan(ConanFile):
         tools.get("{0}/{1}-{2}.tar.gz".format(source_url, self.name, self.version))
         extracted_dir = self.name + "-" + self.version
         os.rename(extracted_dir, self._source_subfolder)
-        
+
     def build(self):
         cmake = CMake(self)
         cmake.configure()
