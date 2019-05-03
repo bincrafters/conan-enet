@@ -9,8 +9,10 @@ class EnetConan(ConanFile):
     name = "enet"
     version = "1.3.14"
     description = "ENet reliable UDP networking library"
+    topics = ("conan", "enet", "udp", "networking")
     url = "https://github.com/bincrafters/conan-enet"
     homepage = "https://github.com/lsalzman/enet"
+    author = "Bincrafters <bincrafters@gmail.com>"
     license = "MIT"
     exports = ["LICENSE.md"]
     exports_sources = ["CMakeLists.txt"]
@@ -25,7 +27,8 @@ class EnetConan(ConanFile):
 
     def source(self):
         source_url = "http://enet.bespin.org/download"
-        tools.get("{0}/{1}-{2}.tar.gz".format(source_url, self.name, self.version))
+        sha256 = "98f6f57aab0a424469619ed3047728f0d3901ce8f0dea919c11e7966d807e870"
+        tools.get("{0}/{1}-{2}.tar.gz".format(source_url, self.name, self.version), sha256=sha256)
         extracted_dir = self.name + "-" + self.version
         os.rename(extracted_dir, self._source_subfolder)
 
