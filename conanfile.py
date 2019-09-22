@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 from conans import ConanFile, CMake, tools
 import os
 
@@ -23,12 +20,10 @@ class EnetConan(ConanFile):
     _source_subfolder = "source_subfolder"
 
     def config(self):
-        del self.settings.compiler.libcxx  # We are a pure C lib.
+        del self.settings.compiler.libcxx
 
     def source(self):
-        source_url = "http://enet.bespin.org/download"
-        sha256 = "98f6f57aab0a424469619ed3047728f0d3901ce8f0dea919c11e7966d807e870"
-        tools.get("{0}/{1}-{2}.tar.gz".format(source_url, self.name, self.version), sha256=sha256)
+        tools.get(**self.conan_data["sources"][self.version])
         extracted_dir = self.name + "-" + self.version
         os.rename(extracted_dir, self._source_subfolder)
 
