@@ -4,7 +4,6 @@ import os
 
 class EnetConan(ConanFile):
     name = "enet"
-    version = "1.3.14"
     description = "ENet reliable UDP networking library"
     topics = ("conan", "enet", "udp", "networking")
     url = "https://github.com/bincrafters/conan-enet"
