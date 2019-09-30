@@ -8,9 +8,7 @@ class EnetConan(ConanFile):
     topics = ("conan", "enet", "udp", "networking")
     url = "https://github.com/bincrafters/conan-enet"
     homepage = "https://github.com/lsalzman/enet"
-    author = "Bincrafters <bincrafters@gmail.com>"
     license = "MIT"
-    exports = ["LICENSE.md"]
     exports_sources = ["CMakeLists.txt"]
     generators = "cmake"
     settings = "os", "arch", "compiler", "build_type"
