@@ -11,7 +11,7 @@ environment:
 
 install:
   - set PATH=%PYTHON_HOME%;%PYTHON_HOME%/Scripts/;%PATH%
-  - pip.exe install conan --upgrade
+  - pip.exe install conan conan-package-tools --upgrade
   - pip.exe install -i https://test.pypi.org/simple/ bincrafters-package-tools
   - conan user # It creates the conan data directory
 
